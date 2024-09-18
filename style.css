@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --purple: #2f40d3;
+  --light-purple: #242947;
+  --lighter-purple: #797e9a;
+  --green: #66a663;
+  --white: #fff;
+  --orange: #dbac36;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  color: white;
+  background-color: var(--purple);
+  padding: 20px;
+}
+
+header {
+  display: flex;
+  background-color: var(--light-purple);
+  border-radius: 20px;
+  padding: 20px;
+  align-items: center;
+  gap: 5px;
+}
