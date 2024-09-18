@@ -28,5 +28,23 @@ header {
   border-radius: 20px;
   padding: 20px;
   align-items: center;
-  gap: 5px;
+  gap: 15px;
+}
+
+header img {
+  height: 80px;
+}
+
+h1 {
+  text-transform: uppercase;
+}
+
+.exit {
+  color: var(--lighter-purple);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.exit:hover {
+  color: var(--white);
 }
