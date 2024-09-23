@@ -95,6 +95,7 @@ h2 {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
+  font-weight: bold;
 }
 
 label {
@@ -124,4 +125,53 @@ label:has(input:checked) {
   align-items: center;
   font-weight: bold;
   border-radius: 30px;
+}
+
+.active {
+  background-color: var(--light-purple);
+  cursor: pointer;
+}
+
+.bomb {
+  background-color: var(--orange);
+  cursor: pointer;
+}
+
+.flag {
+  background-color: var(--green);
+  cursor: pointer;
+}
+
+section {
+  background-color: rgba(255, 255, 255, 0.7);
+  position: fixed;
+  backdrop-filter: blur(10px);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popUp {
+  background-color: var(--purple);
+  border: 5px solid var(--white);
+  border-radius: 20px;
+  width: 300px;
+  text-align: center;
+  padding: 20px 20px;
+}
+
+.popUp h2 {
+  text-transform: uppercase;
+}
+
+.popUp input {
+  font-size: 26px;
+  outline: none;
+  border-radius: 15px;
+  border: 0;
+  padding: 0 15px;
 }
