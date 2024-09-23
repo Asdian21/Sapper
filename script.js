@@ -30,6 +30,8 @@ async function sendRequest(url, method, data) {
 let username;
 let balance;
 
+checkUser();
+
 let authorizationForm = document.getElementById("authorization");
 authorizationForm.addEventListener("submit", authorization);
 
@@ -74,4 +76,23 @@ function exit() {
   popUpSection.style.display = "flex";
   let userInfo = document.querySelector("header span");
   userInfo.innerHTML = `[]`;
+  localStorage.removeItem("username");
+}
+
+async function checkUser() {
+  if (localStorage.getItem("username")) {
+    //Если пользователь уже сохранён в LS
+    username = localStorage.getItem("username");
+    let response = await sendRequest("user", "GET", { username });
+    if (response.error) {
+      alert(response.message);
+    } else {
+      balance = response.balance;
+      showUser();
+    }
+  } else {
+    //Пользователь зашёл на сайт впервые
+    let popUpSection = document.querySelector("section");
+    popUpSection.style.display = "flex";
+  }
 }

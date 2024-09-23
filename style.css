@@ -133,11 +133,13 @@ label:has(input:checked) {
 }
 
 .bomb {
+  background-image: url("./img/bomb.png");
   background-color: var(--orange);
   cursor: pointer;
 }
 
 .flag {
+  background-image: url("./img/flag-in-hole.png");
   background-color: var(--green);
   cursor: pointer;
 }
@@ -150,7 +152,7 @@ section {
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
 }
