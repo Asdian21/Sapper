@@ -29,6 +29,7 @@ async function sendRequest(url, method, data) {
 
 let username;
 let balance;
+let points = 1000;
 
 checkUser();
 
@@ -67,6 +68,12 @@ function showUser() {
   let userInfo = document.querySelector("header span");
   userInfo.innerHTML = `[${username}, ${balance}]`;
   localStorage.setItem("username", username);
+
+  if (localStorage.getItem("game_id")) {
+    gameButton.setAttribute("data-game", "stop");
+  } else {
+    gameButton.setAttribute("data-game", "start");
+  }
 }
 
 document.querySelector(".exit").addEventListener("click", exit);
@@ -94,5 +101,40 @@ async function checkUser() {
     //Пользователь зашёл на сайт впервые
     let popUpSection = document.querySelector("section");
     popUpSection.style.display = "flex";
+  }
+}
+
+let pointButtons = document.getElementsByName("point");
+pointButtons.forEach((elem) => {
+  elem.addEventListener("input", setPoints);
+});
+
+function setPoints() {
+  let checkedBtn = document.querySelector("input:checked");
+  points = +checkedBtn.value;
+}
+
+let gameButton = document.querySelector("#gameButton");
+gameButton.addEventListener("click", startOrStopGame);
+
+function startOrStopGame() {
+  let option = gameButton.getAttribute("data-game");
+  if (option === "start") {
+    //Начинаем игру
+    if (points > 0) {
+      startGame();
+    }
+  } else if (option == "stop") {
+    //Закончить игру
+  }
+}
+
+async function startGame() {
+  let response = await sendRequest("new_game", "POST", { username, points });
+  if (response.error) {
+    alert(response.message);
+  } else {
+    //Игра успешно начата
+    console.log(response);
   }
 }
