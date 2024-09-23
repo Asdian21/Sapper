@@ -60,7 +60,7 @@ main {
   background-color: var(--light-purple);
   padding: 20px;
   border-radius: 20px;
-  flex-grow: 1;
+  flex-grow: 1000;
 }
 
 .area {
