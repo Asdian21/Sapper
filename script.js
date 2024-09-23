@@ -64,6 +64,7 @@ function showUser() {
   popUpSection.style.display = "none";
   let userInfo = document.querySelector("header span");
   userInfo.innerHTML = `[${username}, ${balance}]`;
+  localStorage.setItem("username", username);
 }
 
 document.querySelector(".exit").addEventListener("click", exit);
