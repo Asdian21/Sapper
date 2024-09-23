@@ -33,7 +33,7 @@ let balance;
 let authorizationForm = document.getElementById("authorization");
 authorizationForm.addEventListener("submit", authorization);
 
-async function authorization() {
+async function authorization(event) {
   event.preventDefault();
 
   const formData = new FormData(event.target);
@@ -45,16 +45,16 @@ async function authorization() {
     // Пользователь не найден, нужно его зарегистрировать
     let regResponse = await sendRequest("user", "POST", { username });
     if (regResponse.error) {
-      //Возникла ошибка при регистрации
+      // Возникла ошибка при регистрации
       alert(regResponse.message);
     } else {
-      //Успешная регистрация
+      // Успешная регистрация
       balance = regResponse.balance;
       showUser();
     }
   } else {
-    //Пользователь найден
-    balance = regResponse.balance;
+    // Пользователь найден
+    balance = response.balance; // Здесь используем response, а не regResponse
     showUser();
   }
 }
@@ -64,4 +64,13 @@ function showUser() {
   popUpSection.style.display = "none";
   let userInfo = document.querySelector("header span");
   userInfo.innerHTML = `[${username}, ${balance}]`;
+}
+
+document.querySelector(".exit").addEventListener("click", exit);
+
+function exit() {
+  let popUpSection = document.querySelector("section");
+  popUpSection.style.display = "flex";
+  let userInfo = document.querySelector("header span");
+  userInfo.innerHTML = `[]`;
 }
