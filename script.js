@@ -156,6 +156,13 @@ function activateArea() {
   });
 }
 
+function setFlag() {
+  event.preventDefault();
+  let cell = event.target;
+  cell.classList.add("flag");
+  cell.classList.toggle("flag");
+}
+
 async function stopGame(params) {
   let response = await sendRequest("stop_game", "POST", { username, game_id });
   if (response.error) {
