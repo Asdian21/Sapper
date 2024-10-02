@@ -138,5 +138,7 @@ async function startGame() {
     //Игра успешно начата
     console.log(response);
     game_id = response.game_id;
+    gameButton.setAttribute("data-game", "stop");
+    gameButton.innerHTML = "Завершить игру";
   }
 }

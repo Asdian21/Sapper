@@ -126,6 +126,7 @@ label:has(input:checked) {
   font-weight: bold;
   border-radius: 30px;
   cursor: pointer;
+  text-transform: uppercase;
 }
 
 .active {
