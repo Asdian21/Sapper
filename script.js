@@ -140,5 +140,16 @@ async function startGame() {
     game_id = response.game_id;
     gameButton.setAttribute("data-game", "stop");
     gameButton.innerHTML = "Завершить игру";
+
+    // Активироваться поле
   }
+}
+
+function activateArea() {
+  let cells = document.querySelectorAll(".cell");
+  cells.forEach((cell, i) => {
+    setTimeout(() => {
+      cell.classList.add("active");
+    }, 30 * i);
+  });
 }
