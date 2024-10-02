@@ -137,5 +137,6 @@ async function startGame() {
   } else {
     //Игра успешно начата
     console.log(response);
+    game_id = response.game_id;
   }
 }
