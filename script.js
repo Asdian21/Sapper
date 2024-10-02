@@ -30,6 +30,7 @@ async function sendRequest(url, method, data) {
 let username;
 let balance;
 let points = 1000;
+let game_id;
 
 checkUser();
 
