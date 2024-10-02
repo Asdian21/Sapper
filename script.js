@@ -170,7 +170,33 @@ function setFlag(event) {
   cell.classList.toggle("flag");
 }
 
-function makeStep() {}
+async function makeStep() {
+  let cell = event.target;
+  let row = +cell.getAttribute("data-row");
+  let column = +cell.getAttribute("data-column");
+  console.log(cell, row, column);
+
+  let response = await sendRequest("game_step", "POST", {
+    game_id,
+    row,
+    column,
+  });
+  if (response.error) {
+    alert(response.message);
+  } else {
+    // Получен успешный ответ
+    if (response.status == "Won") {
+      // Выиграл
+      alert("Выиграл!");
+    } else if (response.status == "Failed") {
+      // Проиграл
+      alert("Проиграл");
+    } else if (response.status == "Ok") {
+      // Играем дальше
+      alert("Играем дальше");
+    }
+  }
+}
 
 async function stopGame(params) {
   let response = await sendRequest("stop_game", "POST", { username, game_id });
