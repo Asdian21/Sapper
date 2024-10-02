@@ -187,13 +187,51 @@ async function makeStep() {
     // Получен успешный ответ
     if (response.status == "Won") {
       // Выиграл
-      alert("Выиграл!");
+      updateArea(response.table);
+      alert("Ты програл :<");
+      clearArea();
+      gameButton.setAttribute("data-game", "start");
+      gameButton.innerHTML = "Играть";
+      balance = response.balance;
+      showUser();
     } else if (response.status == "Failed") {
       // Проиграл
-      alert("Проиграл");
+      updateArea(response.table);
+      alert("Ты програл :<");
+      clearArea();
+      gameButton.setAttribute("data-game", "start");
+      gameButton.innerHTML = "Играть";
+      balance = response.balance;
+      showUser();
     } else if (response.status == "Ok") {
       // Играем дальше
-      alert("Играем дальше");
+      updateArea(response.table);
+    }
+  }
+}
+
+function updateArea(table) {
+  let cells = document.querySelectorAll(".cell");
+
+  let j = 0;
+
+  for (let row = 0; row < table.length; row++) {
+    for (let column = 0; column < table[row].length; column++) {
+      let value = table[row][column];
+      if (value === 0) {
+        cells[j].classList.remove("active");
+        cells[j].classList.remove("flag");
+      } else if (value >= 1) {
+        cells[j].classList.remove("active");
+        cells[j].classList.remove("flag");
+        cells[j].innerHTML = value;
+      } else if (value == "BOMB") {
+        cells[j].classList.remove("active");
+        cells[j].classList.remove("flag");
+        cells[j].classList.add("bomb");
+      }
+
+      j++;
     }
   }
 }
