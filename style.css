@@ -129,20 +129,23 @@ label:has(input:checked) {
   text-transform: uppercase;
 }
 
-.active {
-  background-color: var(--light-purple);
+.cell.active {
+  background-color: var(--lighter-purple);
   cursor: pointer;
+  background-size: cover;
 }
 
-.bomb {
+.cell.bomb {
   background-image: url("./img/bomb.png");
   background-color: var(--orange);
   cursor: pointer;
+  background-size: cover;
 }
 
-.flag {
+.cell.flag {
   background-image: url("./img/flag-in-hole.png");
   background-color: var(--green);
+  background-size: cover;
   cursor: pointer;
 }
 

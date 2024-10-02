@@ -149,19 +149,28 @@ async function startGame() {
 
 function activateArea() {
   let cells = document.querySelectorAll(".cell");
+  let rows = 8;
+  let columns = 10;
   cells.forEach((cell, i) => {
     setTimeout(() => {
+      let row = Math.floor(i / columns);
+      let column = i - row * columns;
+      cell.setAttribute("data-row", row);
+      cell.setAttribute("data-column", column);
       cell.classList.add("active");
+      cell.addEventListener("contextmenu", setFlag);
+      cell.addEventListener("click", makeStep);
     }, 30 * i);
   });
 }
 
-function setFlag() {
+function setFlag(event) {
   event.preventDefault();
   let cell = event.target;
-  cell.classList.add("flag");
   cell.classList.toggle("flag");
 }
+
+function makeStep() {}
 
 async function stopGame(params) {
   let response = await sendRequest("stop_game", "POST", { username, game_id });
