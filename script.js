@@ -127,6 +127,7 @@ function startOrStopGame() {
     }
   } else if (option == "stop") {
     //Закончить игру
+    stopGame();
   }
 }
 
@@ -142,6 +143,7 @@ async function startGame() {
     gameButton.innerHTML = "Завершить игру";
 
     // Активироваться поле
+    activateArea();
   }
 }
 
@@ -152,4 +154,31 @@ function activateArea() {
       cell.classList.add("active");
     }, 30 * i);
   });
+}
+
+async function stopGame(params) {
+  let response = await sendRequest("stop_game", "POST", { username, game_id });
+  if (response.error) {
+    alert(response.message);
+  } else {
+    //Игра успешно окончена
+    console.log(response);
+    game_id = "";
+
+    balance = response.balance;
+    showUser();
+    gameButton.setAttribute("data-game", "start");
+    gameButton.innerHTML = "Играть";
+
+    // Очистить поле
+    clearArea();
+  }
+}
+
+function clearArea() {
+  let area = document.querySelector(".area");
+  area.innerHTML = "";
+  for (let i = 0; i < 80; i++) {
+    area.innerHTML = area.innerHTML + `<div class="cell"></div>`;
+  }
 }
